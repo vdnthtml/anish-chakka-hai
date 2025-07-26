@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Helixar Design System - Professional dark interface */
+
+@layer base {
+  :root {
+    /* Helixar Dark Theme */
+    --background: 210 100% 3%; /* Deep charcoal #0D0D0D */
+    --foreground: 0 0% 92%; /* Off-white smoke #EAEAEA */
+
+    --card: 210 100% 5%; /* Obsidian black #1A1A1A */
+    --card-foreground: 0 0% 92%;
+
+    --popover: 210 100% 5%;
+    --popover-foreground: 0 0% 92%;
+
+    /* Blueprint Blue - Primary accent */
+    --primary: 211 100% 50%; /* Blueprint Blue #007BFF */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 11% 15%; /* Dark grey panels */
+    --secondary-foreground: 0 0% 92%;
+
+    --muted: 210 11% 15%;
+    --muted-foreground: 0 0% 50%; /* Medium ash grey #808080 */
+
+    --accent: 211 100% 50%; /* Blueprint Blue */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 11% 20%;
+    --input: 210 11% 15%;
+    --ring: 211 100% 50%;
+
+    --radius: 0.375rem;
+
+    /* Helixar-specific colors */
+    --narrative-track: 211 100% 50%; /* Blueprint Blue */
+    --visuals-track: 354 70% 54%; /* Deep red #DC3545 */
+    --audio-track: 134 61% 41%; /* Data visualization green #28A745 */
+    --clarity-track: 45 93% 58%; /* Warning yellow for clarity score */
+
+    /* Gradients */
+    --gradient-blueprint: linear-gradient(135deg, hsl(211 100% 50%), hsl(211 100% 45%));
+    --gradient-card-hover: linear-gradient(135deg, hsl(211 100% 50% / 0.1), hsl(211 100% 45% / 0.05));
+
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px hsl(210 100% 0% / 0.3), 0 2px 4px -1px hsl(210 100% 0% / 0.2);
+    --shadow-blueprint: 0 0 20px hsl(211 100% 50% / 0.3);
+
+    /* Transitions */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
+}
+
+@layer components {
+  /* Blueprint Terminal specific styles */
+  .timeline-track {
+    @apply relative h-16 rounded border border-border/50 overflow-hidden;
+    transition: var(--transition-smooth);
+  }
+
+  .timeline-track:hover {
+    @apply border-primary/30;
+  }
+
+  .playhead {
+    @apply absolute top-0 w-0.5 bg-primary z-50 pointer-events-none;
+    height: 100%;
+    box-shadow: 0 0 8px hsl(var(--primary) / 0.6);
+  }
+
+  .timeline-scrubber {
+    @apply absolute top-0 left-0 w-full h-full cursor-grab;
+  }
+
+  .timeline-scrubber:active {
+    @apply cursor-grabbing;
+  }
+
+  /* Track-specific styles */
+  .narrative-track {
+    background: linear-gradient(90deg, hsl(var(--narrative-track) / 0.1), hsl(var(--narrative-track) / 0.05));
+  }
+
+  .visuals-track {
+    background: linear-gradient(90deg, hsl(var(--visuals-track) / 0.1), hsl(var(--visuals-track) / 0.05));
+  }
+
+  .audio-track {
+    background: linear-gradient(90deg, hsl(var(--audio-track) / 0.1), hsl(var(--audio-track) / 0.05));
+  }
+
+  .clarity-track {
+    background: linear-gradient(90deg, hsl(var(--clarity-track) / 0.1), hsl(var(--clarity-track) / 0.05));
+  }
+
+  /* Blueprint Cards */
+  .blueprint-card {
+    @apply bg-card border border-border rounded-lg overflow-hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+  }
+
+  .blueprint-card:hover {
+    @apply border-primary/50;
+    background: var(--gradient-card-hover);
+    box-shadow: var(--shadow-blueprint);
+  }
+
+  /* Navigation styles */
+  .nav-link {
+    @apply flex items-center px-3 py-2 rounded-md text-sm font-medium;
+    transition: var(--transition-fast);
+  }
+
+  .nav-link:hover {
+    @apply bg-secondary/50;
+  }
+
+  .nav-link.active {
+    @apply bg-primary/10 text-primary border-l-2 border-primary;
+  }
+
+  /* Drop zone */
+  .drop-zone {
+    @apply border-2 border-dashed border-border rounded-lg p-8 text-center;
+    transition: var(--transition-smooth);
+  }
+
+  .drop-zone:hover {
+    @apply border-primary bg-primary/5;
+    box-shadow: var(--shadow-blueprint);
+  }
+}
